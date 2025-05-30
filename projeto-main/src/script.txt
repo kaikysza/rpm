@@ -1,0 +1,219 @@
+CREATE DATABASE rpm;
+USE rpm;
+
+CREATE TABLE funcionarios(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	data_nascimento DATE NOT NULL,
+	cargo VARCHAR (50) NOT NULL,
+	login VARCHAR (50) NOT NULL,
+	senha VARCHAR (255) NOT NULL,
+    foto VARCHAR(255)
+);
+
+CREATE TABLE fornecedores(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	cnpj VARCHAR (14) NOT NULL,
+	telefone VARCHAR (11) NOT NULL,
+	descricao VARCHAR (100) NOT NULL,
+	status VARCHAR (10) NOT NULL
+);
+
+CREATE TABLE clientes(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	data_nascimento DATE NOT NULL,
+	cpf VARCHAR (11) NOT NULL,
+	telefone VARCHAR (11) NOT NULL
+);
+
+CREATE TABLE produtos(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cor VARCHAR(50) NOT NULL,
+    genero VARCHAR(20) NOT NULL,
+    tamanho VARCHAR(5) NOT NULL,
+    quantidade INT NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    fornecedor_id INT NOT NULL,
+    imagem VARCHAR(255),
+    FOREIGN KEY (fornecedor_id) REFERENCES fornecedores(id)
+	ON DELETE CASCADE -- O que acontece com os produtos se o fornecedor for deletado
+	ON UPDATE CASCADE -- O que acontece com os produtos se o id do fornecedor for atualizado
+);
+
+CREATE TABLE vendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    data_venda DATE NOT NULL,
+    forma_pagamento VARCHAR(20) NOT NULL,
+    cliente_id INT NOT NULL,
+    funcionario_id INT NOT NULL,
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id),
+    FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id)
+);
+
+CREATE TABLE itens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    venda_id INT NOT NULL,
+    produto_id INT NOT NULL,
+    preco_venda DECIMAL(10, 2) NOT NULL,
+    quantidade INT NOT NULL,
+    FOREIGN KEY (venda_id) REFERENCES vendas(id),
+    FOREIGN KEY (produto_id) REFERENCES produtos(id)
+);
+
+
+INSERT INTO funcionarios (nome, data_nascimento, cargo, login, senha, foto) VALUES 
+("Kaiky Souza", "2000-01-01", "Gerente", "kaikysza", SHA2("123", 256), "user/robin.jpg"),
+("Marcos Paulo", "2002-07-06", "Gerente", "mpaulo", SHA2("123", 256), "user/bart.jpg"),
+("Ana Clara", "1998-05-20", "Caixa", "aclara", SHA2("123", 256), "user/user.jpg"),
+("Lucas Silva", "1995-03-14", "Vendedor", "lsilva", SHA2("123", 256), "user/user.jpg"),
+("Gabriel Almeida", "1999-10-30", "Estoquista", "galmeida", SHA2("123", 256), "user/user.jpg"),
+("Fernanda Santos", "1997-08-15", "Caixa", "fsantos", SHA2("123", 256), "user/user.jpg"),
+("Bruna Martins", "2001-12-05", "Estoquista", "bmartins", SHA2("123", 256), "user/user.jpg"),
+("Rafael Costa", "1996-07-22", "Gerente", "rcosta", SHA2("123", 256), "user/user.jpg"),
+("Agatha Oliveira", "2002-09-09", "Caixa", "poliveira", SHA2("123", 256), "user/user.jpg"),
+("João Pedro", "2000-11-18", "Vendedor", "jpedro", SHA2("123", 256), "user/user.jpg"),
+("Camila Ferreira", "1998-06-11", "Estoquista", "cferreira", SHA2("123", 256), "user/user.jpg"),
+("Vinícius Ramos", "1999-02-28", "Estoquista", "vramos", SHA2("123", 256), "user/user.jpg"),
+("Isabela Lima", "2003-04-23", "Vendedor", "ilima", SHA2("123", 256), "user/user.jpg"),
+("Rodrigo Gomes", "1995-01-25", "Gerente", "rgomes", SHA2("123", 256), "user/user.jpg"),
+("Júlia Rocha", "2001-07-17", "Caixa", "jrocha", SHA2("123", 256), "user/user.jpg"),
+("Felipe Nogueira", "1996-10-12", "Vendedor", "fnogueira", SHA2("123", 256), "user/user.jpg"),
+("Letícia Souza", "2000-05-03", "Gerente", "lsouza", SHA2("123", 256), "user/user.jpg"),
+("Karl Zarth", "2001-05-03", "Gerente", "kzarth", SHA2("123", 256), "user/user.jpg"),
+("Ana Julia", "2002-07-09", "Vendedor", "ajulia", SHA2("123", 256), "user/user.jpg"),
+("Emanuelli Tavares", "2004-01-20", "Gerente", "etavares", SHA2("123", 256), "user/user.jpg");
+
+
+INSERT INTO fornecedores (nome, cnpj, telefone, descricao, status) VALUES 
+('Moda & Estilo Ltda', '12345678000190', '11988881111', 'Fornecedor de roupas femininas', 'Ativo'),
+('Fashion Trends S.A.', '23456789000101', '21977772222', 'Distribuidor de roupas masculinas', 'Ativo'),
+('Estilo Urbano Comércio', '34567890000112', '31966663333', 'Fornecedor de roupas streetwear', 'Ativo'),
+('VesteBem Ltda', '45678901000123', '41955554444', 'Vendas de roupas casuais', 'Inativo'),
+('Elegance Confecções', '56789012000134', '51944445555', 'Fabricante de roupas sociais', 'Ativo'),
+('Fashion Star Distribuidora', '67890123000145', '61933336666', 'Distribuidor de moda praia', 'Ativo'),
+('Viva Moda Ltda', '78901234000156', '71922227777', 'Fornecedor de moda fitness', 'Ativo'),
+('Clássica & Moderna', '89012345000167', '81911118888', 'Moda casual e clássica', 'Inativo'),
+('Estação do Estilo', '90123456000178', '91900009999', 'Roupas para jovens', 'Ativo'),
+('Boutique Charme', '01234567000189', '11988881234', 'Loja de roupas de luxo', 'Ativo'),
+('Roupas e Cia', '12345678000290', '21977774321', 'Distribuidor de roupas infantis', 'Ativo'),
+('Desfile Urbano Ltda', '23456789000201', '31966665678', 'Moda urbana', 'Inativo'),
+('Roupas da Hora', '34567890000212', '41955558765', 'Fornecedor de roupas de alta costura', 'Ativo'),
+('Confecções Prime', '45678901000223', '51944446543', 'Fabricante de moda masculina', 'Ativo'),
+('Top Fashion Ltda', '56789012000234', '61933339876', 'Distribuidora de roupas esportivas', 'Ativo'),
+('Estilo Jovem', '67890123000245', '71922222345', 'Moda jovem e casual', 'Inativo'),
+('Moda Exclusiva S.A.', '78901234000256', '81911117654', 'Roupas exclusivas e de luxo', 'Ativo'),
+('Fashion Mix', '89012345000267', '91900005432', 'Fornecedor de roupas multiestilo', 'Ativo'),
+('Moda Verão Ltda', '90123456000278', '11988889876', 'Distribuidora de moda praia e verão', 'Ativo'),
+('Chic & Elegante', '01234567000289', '21977776543', 'Fornecedor de roupas sociais', 'Ativo');
+
+INSERT INTO clientes (nome, data_nascimento, cpf, telefone) VALUES
+('NA', '2024-01-01', '12345678912', '11957434321'),
+('João Silva', '1985-03-15', '12345678900', '11987654321'),
+('Maria Oliveira', '1990-07-22', '98765432100', '21912345678'),
+('Carlos Pereira', '1978-01-12', '34567890100', '31923456789'),
+('Ana Costa', '1995-11-03', '45678901200', '41934567890'),
+('Pedro Almeida', '1982-04-18', '23456789000', '51945678901'),
+('Juliana Ferreira', '1993-06-25', '67890123400', '61956789012'),
+('Lucas Souza', '1987-10-09', '78901234500', '71967890123'),
+('Fernanda Ramos', '1991-09-17', '89012345600', '81978901234'),
+('Ricardo Gomes', '1989-02-11', '90123456700', '91989012345'),
+('Patrícia Santos', '1994-12-19', '01234567800', '31990123456'),
+('Bruno Nascimento', '1986-05-23', '22345678900', '41901234567'),
+('Mariana Mendes', '1992-08-13', '33456789000', '11912345678'),
+('Eduardo Azevedo', '1988-03-30', '44567890100', '21923456789'),
+('Larissa Martins', '1990-07-05', '55678901200', '31934567890'),
+('Thiago Carvalho', '1985-11-20', '66789012300', '51945678901'),
+('Camila Rocha', '1993-09-10', '77890123400', '61956789012'),
+('Guilherme Lima', '1984-04-15', '88901234500', '71967890123'),
+('Daniela Barbosa', '1995-12-08', '99012345600', '81978901234'),
+('Felipe Sousa', '1983-02-25', '11122233300', '91989012345'),
+('Beatriz Cunha', '1991-06-18', '22233344400', '31990123456');
+
+INSERT INTO produtos (nome, cor, genero, tamanho, quantidade, preco, fornecedor_id, imagem) VALUES
+('Camiseta Oversized Wolf', 'Branca', 'Masculino', 'P', 30, 110.00, 1, 'uploads/camiseta1.jpg'),
+('Camiseta Oversized Senna', 'Preta', 'Masculino', 'M', 25, 120.00, 2, 'uploads/camiseta2.jpg'),
+('Camiseta Oversized Drift King', 'Preta', 'Masculino', 'G', 20, 130.00, 3, 'uploads/camiseta3.jpg'),
+('Camiseta Oversized Hamilton', 'Branca', 'Masculino', 'GG', 15, 140.00, 1, 'uploads/camiseta4.jpg'),
+('Camiseta Oversized Old Porsche', 'Branca', 'Masculino', 'P', 50, 110.00, 2, 'uploads/camiseta5.jpg'),
+('Camiseta Oversized Skyline', 'Preta', 'Masculino', 'M', 40, 120.00, 3, 'uploads/camiseta6.jpg'),
+('Camiseta Oversized Porsche', 'Preta', 'Masculino', 'G', 35, 130.00, 1, 'uploads/camiseta7.jpg'),
+('Camiseta Oversized Alonso', 'Branca', 'Masculino', 'GG', 20, 140.00, 2, 'uploads/camiseta8.jpg'),
+('Camiseta Oversized Ferrari 2004', 'Branca', 'Masculino', 'P', 30, 115.00, 3, 'uploads/camiseta9.jpg'),
+('Camiseta Oversized Kimi', 'Branca', 'Masculino', 'M', 25, 125.00, 1, 'uploads/camiseta10.jpg'),
+('Camiseta Oversized Ferrari 2004', 'Preta', 'Masculino', 'G', 40, 135.00, 2, 'uploads/camiseta11.jpg'),
+('Camiseta Oversized Hamilton', 'Preta', 'Masculino', 'GG', 20, 145.00, 3, 'uploads/camiseta12.jpg'),
+('Camiseta Oversized Senna', 'Branca', 'Masculino', 'P', 45, 110.00, 1, 'uploads/camiseta13.jpg'),
+('Camiseta Oversized Angels', 'Branca', 'Masculino', 'M', 30, 120.00, 2, 'uploads/camiseta14.jpg'),
+('Camiseta Oversized Angels', 'Preta', 'Masculino', 'G', 35, 130.00, 3, 'uploads/camiseta15.jpg'),
+('Camiseta Oversized Porsche', 'Branca', 'Masculino', 'P', 15, 110.00, 2, 'uploads/camiseta16.jpg'),
+('Camiseta Oversized Supernatural', 'Branca', 'Masculino', 'G', 35, 130.00, 3, 'uploads/camiseta17.jpg'),
+('Camiseta Oversized Supernatural', 'Preta', 'Masculino', 'GG', 40, 130.00, 2, 'uploads/camiseta18.jpg'),
+('Camiseta Oversized Niki Lauda', 'Branca', 'Masculino', 'M', 20, 140.00, 1, 'uploads/camiseta19.jpg'),
+('Camiseta Oversized Wolf', 'Branca', 'Feminino', 'P', 25, 105.00, 1, 'uploads/camiseta1.jpg'),
+('Camiseta Oversized Senna', 'Preta', 'Feminino', 'M', 20, 115.00, 2, 'uploads/camiseta2.jpg'),
+('Camiseta Oversized Drift King', 'Preta', 'Feminino', 'G', 10, 125.00, 3, 'uploads/camiseta3.jpg'),
+('Camiseta Oversized Hamilton', 'Branca', 'Feminino', 'GG', 15, 135.00, 1, 'uploads/camiseta4.jpg'),
+('Camiseta Oversized Old Porsche', 'Branca', 'Feminino', 'P', 50, 105.00, 2, 'uploads/camiseta5.jpg'),
+('Camiseta Oversized Skyline', 'Preta', 'Feminino', 'M', 35, 115.00, 3, 'uploads/camiseta6.jpg'),
+('Camiseta Oversized Porsche', 'Preta', 'Feminino', 'G', 20, 125.00, 1, 'uploads/camiseta7.jpg'),
+('Camiseta Oversized Alonso', 'Branca', 'Feminino', 'GG', 20, 135.00, 2, 'uploads/camiseta8.jpg'),
+('Camiseta Oversized Ferrari 2004', 'Branca', 'Feminino', 'P', 30, 110.00, 3, 'uploads/camiseta9.jpg'),
+('Camiseta Oversized Kimi', 'Branca', 'Feminino', 'M', 25, 120.00, 1, 'uploads/camiseta10.jpg'),
+('Camiseta Oversized Ferrari 2004', 'Preta', 'Feminino', 'G', 40, 130.00, 2, 'uploads/camiseta11.jpg'),
+('Camiseta Oversized Hamilton', 'Preta', 'Feminino', 'GG', 20, 140.00, 3, 'uploads/camiseta12.jpg'),
+('Camiseta Oversized Senna', 'Branca', 'Feminino', 'P', 25, 105.00, 1, 'uploads/camiseta13.jpg'),
+('Camiseta Oversized Angels', 'Branca', 'Feminino', 'M', 30, 115.00, 2, 'uploads/camiseta14.jpg'),
+('Camiseta Oversized Angels', 'Preta', 'Feminino', 'G', 35, 125.00, 3, 'uploads/camiseta15.jpg'),
+('Camiseta Oversized Porsche', 'Branca', 'Feminino', 'P', 15, 105.00, 2, 'uploads/camiseta16.jpg'),
+('Camiseta Oversized Supernatural', 'Branca', 'Feminino', 'G', 35, 125.00, 3, 'uploads/camiseta17.jpg'),
+('Camiseta Oversized Supernatural', 'Preta', 'Feminino', 'GG', 10, 125.00, 2, 'uploads/camiseta18.jpg'),
+('Camiseta Oversized Niki Lauda', 'Branca', 'Feminino', 'M', 20, 135.00, 1, 'uploads/camiseta19.jpg');
+
+
+-- Inserindo vendas
+INSERT INTO vendas (data_venda, forma_pagamento, cliente_id, funcionario_id) VALUES 
+("2024-11-20", "Cartão de Crédito", 1, 4),
+("2024-10-20", "Boleto", 2, 3),
+("2024-10-21", "Pix", 3, 6),
+("2024-09-21", "Cartão de Crédito", 4, 5),
+("2024-09-22", "Dinheiro", 5, 7),
+("2024-08-22", "Cartão de Débito", 6, 2),
+("2024-08-23", "Pix", 7, 9),
+("2024-07-23", "Cartão de Crédito", 8, 8),
+("2024-07-24", "Dinheiro", 9, 1),
+("2024-06-24", "Boleto", 10, 6),
+("2024-06-25", "Pix", 11, 10),
+("2024-05-25", "Cartão de Débito", 12, 4),
+("2024-05-26", "Dinheiro", 13, 7),
+("2024-04-26", "Cartão de Crédito", 14, 3),
+("2024-04-27", "Pix", 15, 2),
+("2024-03-27", "Boleto", 16, 1),
+("2024-03-28", "Cartão de Crédito", 17, 8),
+("2024-02-28", "Cartão de Débito", 18, 9),
+("2024-02-29", "Dinheiro", 19, 4),
+("2024-01-29", "Boleto", 20, 6);
+
+INSERT INTO itens (venda_id, produto_id, preco_venda, quantidade) VALUES 
+(1, 1, 125.00, 2), 
+(1, 2, 125.00, 1), 
+(2, 3, 125.00, 3),  
+(2, 4, 125.00, 2),
+(3, 5, 125.00, 1),  
+(3, 6, 125.00, 2),  
+(4, 7, 125.00, 1),  
+(4, 8, 125.00, 2),  
+(5, 9, 125.00, 3),  
+(5, 10, 125.00, 2), 
+(6, 1, 125.00, 1),  
+(6, 2, 125.00, 1), 
+(7, 3, 125.00, 2),  
+(7, 4, 125.00, 1),  
+(8, 5, 125.00, 2),  
+(8, 6, 125.00, 1),
+(9, 7, 125.00, 1),  
+(9, 8, 125.00, 2),  
+(10, 9, 125.00, 3),
+(10, 10, 125.00, 1); 

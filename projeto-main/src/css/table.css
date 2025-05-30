@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body .home-section {
+  background-color: #e6e6e6;
+}
+
+/* Body da Table */
+.mt-4 {
+  margin-top: 0rem !important;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-top: 40px;
+}
+
+.card-header {
+  background-color: #191970;
+  color: white;
+  border-radius: 10px 10px 0 0;
+  padding: 15px;
+}
+
+.card-header h4 {
+  font-weight: bold;
+}
+
+/* CSS Table */
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.table th {
+  text-align: center;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.table td {
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  vertical-align: middle;
+  border-radius: 5px;
+}
+
+.table td .btn {
+  font-size: 0.9rem;
+  padding: 5px 10px;
+}
+
+.table td:last-child {
+  text-align: center;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.table td:hover {
+  background-color: #e9ecef;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+/* Botão Visualizar */
+.btn-secondary {
+  background-color: #196DC8;
+  border-color: #196DC8;
+  color: white;
+  
+}
+
+.btn-secondary hover{
+  background-color: #0056b3;
+}
+
+/* Botão na Header */
+.btn-primary {
+  background-color: #196DC8;
+  border-color: #196DC8;
+  margin-bottom: 12px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.search-button {
+  background-color: #196DC8;
+  color: white;
+  border: 1px solid #196DC8;
+  transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  font-size: 16px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.clean-button {
+  background-color: #196DC8;
+  color: white;
+  border: 1px solid #196DC8;
+  transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  font-size: 16px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clean-button:hover {
+  background-color: #0056b3;
+}

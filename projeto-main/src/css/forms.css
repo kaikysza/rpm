@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card-header {
+  background-color: #191970;
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+.form-control {
+  border-radius: 5px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+label {
+  font-weight: bold;
+}
+
+.cargo-options label {
+  font-weight: normal;
+}
+.card-header h4 {
+  font-weight: bold;
+}
+.btn-primary {
+  background-color: #28a745;
+  border: none;
+  width: 150px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background-color: #196DC8;
+  border-color: #196DC8;
+}
+.btn-danger:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-center {
+  display: flex;
+  justify-content: center;
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem;
+}

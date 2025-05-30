@@ -1,0 +1,360 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body .home-section {
+  background-color: #e6e6e6;
+}
+
+header {
+  background: #11101d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  justify-content: center;
+}
+
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+#produtos-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 82%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar {
+  width: 82%;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin: 0 auto;
+}
+
+.search-bar:focus {
+  border-color: #196dc8;
+  box-shadow: 0 4px 8px rgba(25, 109, 200, 0.3);
+}
+
+.search-bar::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+#search-container {
+  width: 82%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e6e6e6;
+  padding: 10px 0;
+  margin-top: 25px;
+}
+
+#produtos-list {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  width: 220px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.card p {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.card button {
+  padding: 12px 20px;
+  background-color: #196dc8;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-top: 15px;
+}
+
+.card button:hover,
+.card button:active {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.card button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.product-price {
+  font-weight: bold;
+  color: #000000;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+/* Modal Principal */
+.modal-content {
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.modal-header {
+  background-color: #11101d;
+  color: #ffffff;
+  padding: 20px;
+}
+
+.modal-header .modal-title {
+  font-weight: 700;
+  font-size: 1.5em;
+}
+
+.btn-close {
+  filter: invert(1);
+  opacity: 1;
+}
+
+.btn-close:hover {
+  filter: invert(0.9);
+}
+
+.modal-body {
+  background-color: #f4f5f7;
+  padding: 30px;
+}
+
+.panel-title {
+  font-size: 1.3em;
+  color: #333333;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.input-group-container {
+  margin-bottom: 20px;
+}
+
+.header-title {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+input.form-control,
+select.form-control {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  width: 100%;
+}
+
+#carrinho-itens .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+
+#carrinho-itens .item span {
+  font-weight: bold;
+  color: #333;
+}
+
+#carrinho-itens .item button {
+  padding: 5px 10px;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#total {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #196dc8;
+}
+
+.btn-primary,
+.btn-danger {
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+#finalizar-venda {
+  background-color: #28a745;
+  color: #ffffff;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+#finalizar-venda:hover {
+  background-color: #218838;
+}
+
+#limpar-carrinho {
+  background-color: #ff6f61;
+  color: #ffffff;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+#limpar-carrinho:hover {
+  background-color: #e55d4e;
+}
+
+/* Carrinho com notificação */
+#fixed-cart-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: #11101d;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: transform 0.3s;
+  text-decoration: none;
+}
+
+#fixed-cart-container:hover {
+  transform: scale(1.05);
+}
+
+#cart-icon-container {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+}
+
+#cart-icon {
+  font-size: 30px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+#cart-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+#cart-notification {
+  background-color: #ff3d3d;
+  color: #ffffff;
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: inline-block;
+}
+
+#fixed-cart-container a {
+  text-decoration: none;
+  outline: none;
+}
+
+/* Container de vendas realizadas */
+#fixed-sales-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #11101d;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: transform 0.3s;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+#fixed-sales-container:hover {
+  transform: scale(1.05);
+}
+
+#sales-icon {
+  font-size: 30px;
+  margin-right: 8px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#sales-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+#fixed-sales-container a {
+  text-decoration: none;
+  outline: none;
+}
